@@ -6,6 +6,7 @@
     <title>Martin Krebs | Technical Solutions Manager</title>
     <meta name="description" content="Digital Business Card — Martin Krebs, Technical Solutions Manager">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="theme-color" content="#0e0e1a">
 
     <!-- Open Graph (WhatsApp, Signal, etc.) -->
     <meta property="og:type" content="website">
@@ -61,16 +62,26 @@
         let formLoadTime = Date.now();
 
         // ── Theme Toggle ─────────────────────────────────────
+        const THEME_COLORS = { dark: '#0e0e1a', light: '#e8eaf0' };
+
+        function setThemeColor(theme) {
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', THEME_COLORS[theme]);
+        }
+
         function toggleTheme() {
             const html = document.documentElement;
             const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             html.setAttribute('data-theme', next);
+            setThemeColor(next);
             localStorage.setItem('flux-card-theme', next);
         }
 
         (function initTheme() {
             const saved = localStorage.getItem('flux-card-theme');
-            if (saved) document.documentElement.setAttribute('data-theme', saved);
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+                setThemeColor(saved);
+            }
         })();
 
         // ── Render from content.js ───────────────────────────
