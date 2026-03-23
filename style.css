@@ -141,8 +141,8 @@ body {
     border-radius: 50%;
     border: 1px solid var(--glass-border);
     background: var(--glass);
-    backdrop-filter: blur(var(--blur));
     -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter: blur(var(--blur));
     color: var(--text);
     cursor: pointer;
     display: flex;
@@ -177,8 +177,8 @@ body {
 /* ── Glass Card ───────────────────────────────────── */
 .glass-card {
     background: var(--glass);
-    backdrop-filter: blur(var(--blur));
     -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter: blur(var(--blur));
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -236,6 +236,7 @@ body {
     border: 2px solid transparent;
     background: linear-gradient(135deg, var(--accent), var(--accent-2)) border-box;
     -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
 }
