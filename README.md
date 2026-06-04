@@ -60,6 +60,7 @@ flux-card/
   profile.jpg     Avatar image
   favicon.svg     Browser tab icon
   og-image.png    Social media preview image
+  CHANGELOG.md    Release notes
 ```
 
 ---
