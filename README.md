@@ -19,7 +19,7 @@ No sign-up. No backend. Just a clean, responsive business card that works on any
 
 **Flux Card** is a modular digital business card that runs entirely in the browser. All content is stored in a single configuration file — no CMS, no framework, no build step. Fork it, swap the content, deploy it.
 
-The interface follows a glassmorphism / acrylic design language with smooth animations, dark/light mode, and full mobile support. It looks like a native app, but it's just a few static files.
+The interface follows a glassmorphism / acrylic design language with smooth animations, automatic dark/light mode, browser-language detection, and full mobile support. It looks like a native app, but it's just a few static files.
 
 ---
 
@@ -27,17 +27,19 @@ The interface follows a glassmorphism / acrylic design language with smooth anim
 
 ### Core
 - **Modular content** — all personal data lives in `content.js`, the template stays untouched
-- **Multi-language** — German & English out of the box, extensible to any language
-- **Dark / Light mode** — toggleable, preference saved in localStorage
+- **Multi-language** — German & English out of the box, with first-visit browser language detection
+- **Auto / Dark / Light mode** — follows system preference by default, with manual override saved in localStorage
 - **Contact form** — mailto-based with math captcha and honeypot spam protection
 - **Social links** — GitHub, LinkedIn, E-Mail, and more (extensible via icon map)
 - **Focus areas** — highlight your key competencies with icons and descriptions
+- **Project highlights** — curated GitHub project cards with descriptions, tags, repo links, and live demos
 - **Skills grid** — tag-based display of your technologies and expertise
 - **Open Graph & Twitter Cards** — rich previews when shared on WhatsApp, Signal, LinkedIn, X, etc.
 
 ### Design
-- **Glassmorphism UI** — acrylic-style backdrop-filter effects throughout
-- **Animated background** — floating gradient orbs with smooth motion
+- **Glassmorphism UI** — acrylic-style backdrop-filter effects with a restrained blurple look
+- **Fixed blurple gradient background** — content scrolls over a static atmospheric background for a stronger glass effect
+- **SVG icon system** — inline social, focus, theme, and project action icons
 - **Responsive** — optimized for desktop, tablet, and mobile
 - **Smooth animations** — fade-up entrance effects on scroll
 
@@ -87,6 +89,7 @@ cd flux-card
 | `meta` | Page title, OG tags, repo URL |
 | `socialLinks` | Your social profiles (GitHub, LinkedIn, etc.) |
 | `skills` | Array of skill tags |
+| `projects` | Curated GitHub highlights with descriptions, tags, and links |
 | `focusAreas` | Key competencies with icons and i18n keys |
 | `i18n` | All text content in each language |
 

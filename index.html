@@ -31,9 +31,14 @@
     <!-- Top Controls -->
     <div class="top-controls">
         <button type="button" class="top-btn lang-toggle" onclick="toggleLang()" aria-label="Switch language" id="langBtn">EN</button>
-        <button type="button" class="top-btn theme-toggle" onclick="toggleTheme()" aria-label="Theme wechseln">
+        <button type="button" class="top-btn theme-toggle" onclick="toggleTheme()" aria-label="Theme wechseln" id="themeBtn">
             <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-auto" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" aria-hidden="true">
+                <circle class="auto-fill" cx="12" cy="12" r="9"/>
+                <path class="auto-half" d="M12 3a9 9 0 0 1 0 18Z"/>
+                <circle class="auto-ring" cx="12" cy="12" r="9" fill="none" stroke-width="2"/>
+            </svg>
         </button>
     </div>
 
@@ -52,34 +57,72 @@
             phone: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
             send: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
             github_sm: '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>',
+            external: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>',
+            lightbulb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14.5c1.2-.9 2-2.4 2-4A5 5 0 0 0 7 10.5c0 1.6.8 3.1 2 4"/><path d="M9 18h6"/><path d="M10 22h4"/><path d="M10 14.5h4v3.5h-4z"/></svg>',
+            layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 16 9 5 9-5"/></svg>',
+            plug: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 7V2"/><path d="M15 7V2"/><path d="M6 7h12v5a6 6 0 0 1-12 0V7Z"/></svg>',
         };
 
         // ── State ────────────────────────────────────────────
         const CONFIG = CONTENT;
-        let currentLang = localStorage.getItem('flux-card-lang') || 'de';
+        const detectInitialLang = () => {
+            const saved = localStorage.getItem('flux-card-lang');
+            if (saved && CONFIG.i18n[saved]) return saved;
+
+            const browserLangs = navigator.languages?.length ? navigator.languages : [navigator.language];
+            return browserLangs.some(lang => lang && lang.toLowerCase().startsWith('de')) ? 'de' : 'en';
+        };
+        let currentLang = detectInitialLang();
         let captchaA, captchaB;
         let formLoadTime = Date.now();
 
         // ── Theme Toggle ─────────────────────────────────────
         const THEME_COLORS = { dark: '#0e0e1a', light: '#e8eaf0' };
+        const THEME_MODES = ['auto', 'dark', 'light'];
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+        let themeMode = localStorage.getItem('flux-card-theme-mode') || localStorage.getItem('flux-card-theme') || 'auto';
 
         function setThemeColor(theme) {
             document.querySelector('meta[name="theme-color"]').setAttribute('content', THEME_COLORS[theme]);
         }
 
-        function toggleTheme() {
+        function resolveTheme(mode) {
+            return mode === 'auto' ? (systemTheme.matches ? 'dark' : 'light') : mode;
+        }
+
+        function applyThemeMode(mode) {
+            if (!THEME_MODES.includes(mode)) mode = 'auto';
             const html = document.documentElement;
-            const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', next);
-            setThemeColor(next);
-            localStorage.setItem('flux-card-theme', next);
+            const theme = resolveTheme(mode);
+            themeMode = mode;
+            html.setAttribute('data-theme', theme);
+            html.setAttribute('data-theme-mode', mode);
+            setThemeColor(theme);
+            localStorage.setItem('flux-card-theme-mode', mode);
+            localStorage.removeItem('flux-card-theme');
+
+            const labels = {
+                auto: `Theme automatisch (${theme})`,
+                dark: 'Theme dunkel',
+                light: 'Theme hell',
+            };
+            document.getElementById('themeBtn')?.setAttribute('aria-label', labels[mode]);
+        }
+
+        function toggleTheme() {
+            const next = THEME_MODES[(THEME_MODES.indexOf(themeMode) + 1) % THEME_MODES.length];
+            applyThemeMode(next);
         }
 
         (function initTheme() {
-            const saved = localStorage.getItem('flux-card-theme');
-            if (saved) {
-                document.documentElement.setAttribute('data-theme', saved);
-                setThemeColor(saved);
+            applyThemeMode(themeMode);
+            const handleSystemThemeChange = () => {
+                if (themeMode === 'auto') applyThemeMode('auto');
+            };
+            if (systemTheme.addEventListener) {
+                systemTheme.addEventListener('change', handleSystemThemeChange);
+            } else {
+                systemTheme.addListener(handleSystemThemeChange);
             }
         })();
 
@@ -117,7 +160,7 @@
 
             const focusHTML = c.focusAreas.map(f =>
                 `<div class="focus-item">
-                    <div class="focus-icon">${f.icon}</div>
+                    <div class="focus-icon">${ICONS[f.icon] || f.icon}</div>
                     <div>
                         <h3 data-i18n="focus_${f.i18nKey}_title"></h3>
                         <p data-i18n="focus_${f.i18nKey}_desc"></p>
@@ -128,6 +171,32 @@
             const skillsHTML = c.skills.map(s =>
                 `<span class="skill-tag">${s}</span>`
             ).join('');
+
+            const projectsHTML = c.projects.map(project => {
+                const tags = project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('');
+                const liveLink = project.liveUrl
+                    ? `<a href="${project.liveUrl}" target="_blank" rel="noopener" class="project-action">
+                        ${ICONS.external}
+                        <span data-i18n="project_live"></span>
+                    </a>`
+                    : '';
+
+                return `<article class="project-card">
+                    <div class="project-main">
+                        <div class="project-kicker">${project.repo}</div>
+                        <h3>${project.name}</h3>
+                        <p data-i18n="project_${project.i18nKey}_desc"></p>
+                    </div>
+                    <div class="project-tags">${tags}</div>
+                    <div class="project-actions">
+                        <a href="${project.url}" target="_blank" rel="noopener" class="project-action">
+                            ${ICONS.github_sm}
+                            <span data-i18n="project_repo"></span>
+                        </a>
+                        ${liveLink}
+                    </div>
+                </article>`;
+            }).join('');
 
             document.getElementById('app').innerHTML = `
                 <div class="hero glass-card">
@@ -144,6 +213,15 @@
                     <div class="section glass-card">
                         <div class="section-title" data-i18n="section_focus"></div>
                         <div class="focus-list">${focusHTML}</div>
+                    </div>
+
+                    <div class="section glass-card">
+                        <div class="section-title" data-i18n="section_projects"></div>
+                        <div class="projects-grid">${projectsHTML}</div>
+                        <a href="https://github.com/krebs3r?tab=repositories" target="_blank" rel="noopener" class="projects-more">
+                            ${ICONS.github_sm}
+                            <span data-i18n="project_all"></span>
+                        </a>
                     </div>
 
                     <div class="section glass-card">
@@ -193,7 +271,7 @@
                         ${ICONS.github_sm}
                         ${c.meta.repoLabel}
                     </a>
-                    <p data-i18n-html="footer_disclaimer" style="font-size:.75rem;opacity:.55;line-height:1.5;margin:12px 0 0;text-align:center"></p>
+                    <p class="footer-disclaimer" data-i18n-html="footer_disclaimer"></p>
                 </div>`;
         }
 
