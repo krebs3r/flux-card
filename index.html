@@ -7,6 +7,7 @@
     <meta name="description" content="Digital Business Card — Martin Krebs, Technical Solutions Manager">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="theme-color" content="#0e0e1a">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <meta property="og:title" content="Martin Krebs — Technical Solutions Manager">
     <meta property="og:description" content="Digital Business Card — Martin Krebs, Technical Solutions Manager">
@@ -77,7 +78,7 @@
         let formLoadTime = Date.now();
 
         // ── Theme Toggle ─────────────────────────────────────
-        const THEME_COLORS = { dark: '#0e0e1a', light: '#e8eaf0' };
+        const THEME_COLORS = { dark: '#0e0e1a', light: '#8f78e8' };
         const THEME_MODES = ['auto', 'dark', 'light'];
         const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
         let themeMode = localStorage.getItem('flux-card-theme-mode') || localStorage.getItem('flux-card-theme') || 'auto';
