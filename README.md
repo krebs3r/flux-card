@@ -3,7 +3,7 @@
 > A modular, single-page digital business card with glassmorphism design.
 > No server. No dependencies. Just edit one file and deploy.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blueviolet)
+![Version](https://img.shields.io/badge/version-1.1.0-blueviolet)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
@@ -127,10 +127,16 @@ Works in all modern browsers that support `backdrop-filter`.
 
 ---
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
+
+---
+
 ## License
 
 [MIT](LICENSE) — feel free to use, fork, and modify.
 
 ---
 
-<p align="center">Made with focus · Flux Card v1.0.0</p>
+<p align="center">Made with focus · Flux Card v1.1.0</p>
