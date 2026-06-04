@@ -8,8 +8,8 @@ const CONTENT = {
   "meta": {
     "title": "{name} | {role}",
     "description": "Digital Business Card — {name}, {role}",
-    "ogImage": "og-image.png",
-    "ogUrl": "https://krebs3r.github.io/flux-card/",
+    "ogImage": "https://martin-krebs.eu/og-image.png",
+    "ogUrl": "https://martin-krebs.eu/",
     "repoUrl": "https://github.com/krebs3r/flux-card",
     "repoLabel": "krebs3r/flux-card"
   },

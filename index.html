@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Martin Krebs | Technical Solutions Manager</title>
     <meta name="description" content="Digital Business Card — Martin Krebs, Technical Solutions Manager">
+    <meta name="author" content="Martin Krebs">
+    <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="canonical" href="https://martin-krebs.eu/">
     <meta name="theme-color" content="#0e0e1a">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <meta property="og:title" content="Martin Krebs — Technical Solutions Manager">
     <meta property="og:description" content="Digital Business Card — Martin Krebs, Technical Solutions Manager">
     <meta property="og:image" content="https://martin-krebs.eu/og-image.png">
+    <meta property="og:site_name" content="Martin Krebs">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://martin-krebs.eu/">
@@ -21,6 +27,38 @@
     <meta name="twitter:description" content="Digital Business Card — Martin Krebs, Technical Solutions Manager">
     <meta name="twitter:image" content="https://martin-krebs.eu/og-image.png">
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json" id="structuredData">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "url": "https://martin-krebs.eu/",
+      "name": "Martin Krebs — Technical Solutions Manager",
+      "description": "Digital Business Card — Martin Krebs, Technical Solutions Manager",
+      "image": "https://martin-krebs.eu/og-image.png",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Martin Krebs",
+        "jobTitle": "Technical Solutions Manager",
+        "url": "https://martin-krebs.eu/",
+        "image": "https://martin-krebs.eu/profile.jpg",
+        "email": "mailto:mail@martin-krebs.eu",
+        "sameAs": [
+          "https://github.com/krebs3r",
+          "https://www.linkedin.com/in/krebsm"
+        ],
+        "knowsAbout": [
+          "Payment Solutions",
+          "PSD2",
+          "Strong Customer Authentication",
+          "MIT / CIT Recurring Payments",
+          "API Integration",
+          "Product Ownership",
+          "Requirements Engineering",
+          "Merchant Onboarding"
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
     <!-- Background -->
@@ -134,18 +172,44 @@
 
         function applyMeta(c) {
             const resolve = s => s.replace('{name}', c.name).replace('{role}', c.role);
+            const absoluteUrl = (url) => new URL(url, c.meta.ogUrl).href;
             document.title = resolve(c.meta.title);
             document.querySelector('meta[name="description"]').content = resolve(c.meta.description);
+            document.querySelector('meta[name="author"]').content = c.name;
             document.querySelector('link[rel="icon"]').href = c.favicon;
+            document.querySelector('link[rel="canonical"]').href = c.meta.ogUrl;
 
             const ogTitle = `${c.name} — ${c.role}`;
+            const ogImage = absoluteUrl(c.meta.ogImage);
             document.querySelector('meta[property="og:title"]').content = ogTitle;
             document.querySelector('meta[property="og:description"]').content = resolve(c.meta.description);
-            document.querySelector('meta[property="og:image"]').content = c.meta.ogImage;
+            document.querySelector('meta[property="og:image"]').content = ogImage;
             document.querySelector('meta[property="og:url"]').content = c.meta.ogUrl;
             document.querySelector('meta[name="twitter:title"]').content = ogTitle;
             document.querySelector('meta[name="twitter:description"]').content = resolve(c.meta.description);
-            document.querySelector('meta[name="twitter:image"]').content = c.meta.ogImage;
+            document.querySelector('meta[name="twitter:image"]').content = ogImage;
+
+            const structuredData = {
+                '@context': 'https://schema.org',
+                '@type': 'ProfilePage',
+                url: c.meta.ogUrl,
+                name: ogTitle,
+                description: resolve(c.meta.description),
+                image: ogImage,
+                mainEntity: {
+                    '@type': 'Person',
+                    name: c.name,
+                    jobTitle: c.role,
+                    url: c.meta.ogUrl,
+                    image: absoluteUrl(c.avatar),
+                    email: `mailto:${c.email}`,
+                    sameAs: c.socialLinks
+                        .filter(link => !link.url.startsWith('mailto:'))
+                        .map(link => link.url),
+                    knowsAbout: c.skills,
+                },
+            };
+            document.getElementById('structuredData').textContent = JSON.stringify(structuredData, null, 2);
         }
 
         function renderApp(c) {

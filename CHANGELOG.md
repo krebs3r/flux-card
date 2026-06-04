@@ -2,6 +2,13 @@
 
 All notable changes to Flux Card are documented here.
 
+## v1.1.1
+
+### Changed
+- Improved SEO metadata with canonical URL, robots preview directives, author metadata, and absolute Open Graph image URLs.
+- Added ProfilePage / Person structured data for Martin Krebs, including social profile links and skill topics.
+- Updated the canonical public URL to `https://martin-krebs.eu/`.
+
 ## v1.1.0
 
 ### Added
