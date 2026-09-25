@@ -245,19 +245,23 @@
                         <span data-i18n="project_live"></span>
                     </a>`
                     : '';
+                const repoLink = project.url
+                    ? `<a href="${project.url}" target="_blank" rel="noopener" class="project-action">
+                        ${ICONS.github_sm}
+                        <span data-i18n="project_repo"></span>
+                    </a>`
+                    : '';
+                const kicker = project.repo || new URL(project.liveUrl).host;
 
                 return `<article class="project-card">
                     <div class="project-main">
-                        <div class="project-kicker">${project.repo}</div>
+                        <div class="project-kicker">${kicker}</div>
                         <h3>${project.name}</h3>
                         <p data-i18n="project_${project.i18nKey}_desc"></p>
                     </div>
                     <div class="project-tags">${tags}</div>
                     <div class="project-actions">
-                        <a href="${project.url}" target="_blank" rel="noopener" class="project-action">
-                            ${ICONS.github_sm}
-                            <span data-i18n="project_repo"></span>
-                        </a>
+                        ${repoLink}
                         ${liveLink}
                     </div>
                 </article>`;

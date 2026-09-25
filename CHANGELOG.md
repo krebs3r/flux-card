@@ -2,6 +2,12 @@
 
 All notable changes to Flux Card are documented here.
 
+## Unreleased
+
+### Changed
+- Computop Paygate Tester now links to `https://paygate.paytest.dev/`; the repository link was removed because the repo is no longer public.
+- Project cards no longer require a repository link; the kicker falls back to the live URL's host.
+
 ## v1.1.1
 
 ### Changed

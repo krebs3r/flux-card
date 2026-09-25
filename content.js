@@ -56,9 +56,7 @@ const CONTENT = {
   "projects": [
     {
       "name": "Computop Paygate Tester",
-      "repo": "krebs3r/computop-tester",
-      "url": "https://github.com/krebs3r/computop-tester",
-      "liveUrl": "https://krebs3r.github.io/computop-tester/",
+      "liveUrl": "https://paygate.paytest.dev/",
       "i18nKey": "computop",
       "tags": ["Payment", "Encryption", "Browser Tool"]
     },
