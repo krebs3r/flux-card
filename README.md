@@ -39,6 +39,7 @@ The interface follows a glassmorphism / acrylic design language with smooth anim
 ### Design
 - **Glassmorphism UI** — acrylic-style backdrop-filter effects with a restrained blurple look
 - **Fixed blurple gradient background** — content scrolls over a static atmospheric background for a stronger glass effect
+- **Interactive fluid background** — mouse and touch stir a lightweight WebGL2 fluid simulation in the accent colors; falls back to a CSS cursor glow, respects `prefers-reduced-motion`
 - **SVG icon system** — inline social, focus, theme, and project action icons
 - **Responsive** — optimized for desktop, tablet, and mobile
 - **Smooth animations** — fade-up entrance effects on scroll
@@ -56,6 +57,7 @@ The interface follows a glassmorphism / acrylic design language with smooth anim
 flux-card/
   index.html      Template — structure & rendering logic
   style.css       Design — layout, themes, animations
+  fluid.js        Interactive background — fluid simulation & glow fallback
   content.js      Content — the only file you need to edit
   profile.jpg     Avatar image
   favicon.svg     Browser tab icon
@@ -92,6 +94,7 @@ cd flux-card
 | `skills` | Array of skill tags |
 | `projects` | Curated GitHub highlights with descriptions, tags, and links |
 | `focusAreas` | Key competencies with icons and i18n keys |
+| `background` | Interactive background: `effect` (`fluid` / `glow` / `orbs`), `intensity`, `fadeSeconds`, `ambient` |
 | `i18n` | All text content in each language |
 
 ### Available social link icons

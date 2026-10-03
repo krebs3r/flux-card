@@ -5,6 +5,13 @@ const CONTENT = {
   "avatar": "profile.jpg",
   "favicon": "favicon.svg",
 
+  "background": {
+    "effect": "fluid",
+    "intensity": 1.0,
+    "fadeSeconds": 1.2,
+    "ambient": true
+  },
+
   "meta": {
     "title": "{name} | {role}",
     "description": "Digital Business Card — {name}, {role}",
