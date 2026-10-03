@@ -137,22 +137,32 @@ body {
 
 .bg-orb {
     position: absolute;
-    border-radius: 50%;
-    filter: blur(110px);
+    /* Soft falloff drawn as a gradient instead of filter: blur(110px):
+       large blur filters show visible rings in Firefox and cost far more to animate */
+    background: radial-gradient(closest-side,
+        var(--orb) 0%,
+        var(--orb) 28%,
+        color-mix(in srgb, var(--orb) 88%, transparent) 40%,
+        color-mix(in srgb, var(--orb) 66%, transparent) 52%,
+        color-mix(in srgb, var(--orb) 42%, transparent) 64%,
+        color-mix(in srgb, var(--orb) 22%, transparent) 76%,
+        color-mix(in srgb, var(--orb) 8%, transparent) 88%,
+        transparent 100%);
     opacity: 1;
     animation: float 20s ease-in-out infinite;
 }
 
+/* Sizes include the former blur radius (+440px), positions are shifted by half of it */
 .bg-orb:nth-child(1) {
-    width: 700px; height: 700px;
-    background: #4b148a;
-    top: -20%; left: -12%;
+    --orb: #4b148a;
+    width: 1140px; height: 1140px;
+    top: calc(-20% - 220px); left: calc(-12% - 220px);
     animation-duration: 25s;
 }
 .bg-orb:nth-child(2) {
-    width: 600px; height: 600px;
-    background: #13547a;
-    top: 34%; right: -10%;
+    --orb: #13547a;
+    width: 1040px; height: 1040px;
+    top: calc(34% - 220px); right: calc(-10% - 220px);
     animation-name: float-mirrored;
     animation-duration: 20s;
     animation-delay: -6s;
@@ -160,18 +170,18 @@ body {
 
 /* Bottom glow, drifts sideways along the lower edge */
 .bg-orb:nth-child(3) {
-    width: 760px; height: 760px;
-    background: #2a0845;
-    bottom: -380px; left: 22%;
+    --orb: #2a0845;
+    width: 1200px; height: 1200px;
+    bottom: -600px; left: calc(22% - 220px);
     animation-name: float-bottom;
     animation-duration: 30s;
     animation-delay: -12s;
 }
 
 [data-theme="light"] .bg-orb { opacity: 0.55; }
-[data-theme="light"] .bg-orb:nth-child(1) { background: #c9b8f0; }
-[data-theme="light"] .bg-orb:nth-child(2) { background: #b8d8e8; }
-[data-theme="light"] .bg-orb:nth-child(3) { background: #d0c4f2; }
+[data-theme="light"] .bg-orb:nth-child(1) { --orb: #c9b8f0; }
+[data-theme="light"] .bg-orb:nth-child(2) { --orb: #b8d8e8; }
+[data-theme="light"] .bg-orb:nth-child(3) { --orb: #d0c4f2; }
 
 @keyframes float {
     0%, 100% { transform: translate(0, 0) scale(1); }

@@ -2,6 +2,11 @@
 
 All notable changes to Flux Card are documented here.
 
+## v1.2.2
+
+### Changed
+- Background orbs are drawn as soft radial gradients instead of large `filter: blur()` circles. This removes visible rings (banding) in Firefox and makes the animation cheaper to render.
+
 ## v1.2.1
 
 ### Fixed
