@@ -2,6 +2,11 @@
 
 All notable changes to Flux Card are documented here.
 
+## v1.2.3
+
+### Fixed
+- Safari on iOS 26 no longer shows black bars at the notch and behind the address bar. The fixed background layer is no longer hit-testable, so Safari tints the bars from the page background and content scrolls underneath them.
+
 ## v1.2.2
 
 ### Changed

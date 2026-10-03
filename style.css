@@ -113,6 +113,10 @@ body {
     inset: calc(-1 * env(safe-area-inset-top, 0px)) calc(-1 * env(safe-area-inset-right, 0px)) calc(-1 * env(safe-area-inset-bottom, 0px)) calc(-1 * env(safe-area-inset-left, 0px));
     z-index: 0;
     overflow: hidden;
+    /* Safari 26 on iOS tints the status bar and toolbar from fixed elements it hits at the
+       viewport edges and paints them black for gradient backgrounds. Not being hit-testable
+       lets it fall back to the page itself, so the background shows under the bars. */
+    pointer-events: none;
     background: var(--page-background);
     background-size: cover;
 }
