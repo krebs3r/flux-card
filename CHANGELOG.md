@@ -2,7 +2,7 @@
 
 All notable changes to Flux Card are documented here.
 
-## Unreleased
+## v1.2.0
 
 ### Added
 - Interactive fluid background (`fluid.js`): a dependency-free WebGL2 fluid simulation that follows mouse and touch, tinted with `--accent` / `--accent-2` and updated on theme changes.
@@ -13,6 +13,8 @@ All notable changes to Flux Card are documented here.
 ### Changed
 - Computop Paygate Tester now links to `https://paygate.paytest.dev/`; the repository link was removed because the repo is no longer public.
 - Project cards no longer require a repository link; the kicker falls back to the live URL's host.
+- The fluid effect is dampened while the pointer is over cards and buttons, so content stays readable.
+- Skill and project tags show the default cursor instead of the text cursor.
 
 ## v1.1.1
 
