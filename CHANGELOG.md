@@ -2,6 +2,11 @@
 
 All notable changes to Flux Card are documented here.
 
+## Unreleased
+
+### Fixed
+- The scrollbar in desktop Chrome is transparent over the page again instead of sitting in a purple gutter. On devices with a mouse the body is now the scroll container, so the track shows the page gradient like Firefox's overlay scrollbar. Touch devices keep document scrolling for iOS Safari.
+
 ## v1.2.3
 
 ### Added

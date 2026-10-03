@@ -94,7 +94,8 @@ html {
     scroll-behavior: smooth;
     min-height: 100%;
     background: var(--page-background);
-    background-color: var(--edge);
+    /* Chrome shows this color behind its transparent scrollbar track */
+    background-color: var(--bg);
     background-attachment: fixed;
     background-size: cover;
 }
@@ -113,6 +114,24 @@ body {
     color: var(--text);
     overflow-x: hidden;
     transition: background var(--transition), color var(--transition);
+}
+
+/* Desktop Chrome draws the page scrollbar in its own gutter filled with the root color.
+   Letting body scroll instead puts the transparent track over the page gradient, like the
+   overlay scrollbar in Firefox. Touch devices keep document scrolling: iOS Safari only
+   draws the page under its toolbars when the document itself scrolls. */
+@media (hover: hover) and (pointer: fine) {
+    html {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        height: 100%;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: thin; /* not inherited from html */
+    }
 }
 
 /* ── Animated Background ──────────────────────────── */
