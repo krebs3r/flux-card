@@ -2,6 +2,17 @@
 
 All notable changes to Flux Card are documented here.
 
+## v1.2.1
+
+### Fixed
+- The background layer had no size because of an invalid `inset` value, so the background orbs were never visible. They now show up as intended.
+
+### Changed
+- Background orbs drift further (relative to the viewport) on mirrored paths instead of moving only a few pixels.
+- The static gradient at the bottom edge is now a third orb that drifts slowly along the lower edge.
+- Light mode uses soft lilac and light-blue orbs at reduced opacity instead of the dark colors from dark mode.
+- Light mode footer uses dark text and a dark repository link, matching the other links.
+
 ## v1.2.0
 
 ### Added

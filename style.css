@@ -27,7 +27,6 @@ html { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparen
     --page-background:
         radial-gradient(circle at 0% 0%, rgba(124,91,245,0.72), transparent 38rem),
         radial-gradient(circle at 100% 34%, rgba(0,212,170,0.34), transparent 34rem),
-        radial-gradient(circle at 44% 92%, rgba(42,8,69,0.95), transparent 42rem),
         linear-gradient(135deg, rgba(124,91,245,0.28), transparent 48%),
         linear-gradient(315deg, rgba(19,45,70,0.88), transparent 52%),
         var(--bg);
@@ -47,6 +46,7 @@ html { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparen
     --text-secondary: rgba(240,240,245,0.6);
     --footer-text: rgba(240,240,245,0.7);
     --footer-link: var(--accent);
+    --footer-shadow: 0 1px 8px rgba(0,0,0,0.28);
     --icon-contrast: #fff;
     --auto-icon-fill: #f8fafc;
     --auto-icon-half: #0e0e1a;
@@ -72,8 +72,9 @@ html { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparen
     --glass-shadow: rgba(0,0,0,0.1);
     --text: #1a1a2e;
     --text-secondary: rgba(26,26,46,0.55);
-    --footer-text: rgba(255,255,255,0.82);
-    --footer-link: rgba(255,255,255,0.92);
+    --footer-text: rgba(26,26,46,0.62);
+    --footer-link: var(--text);
+    --footer-shadow: none;
     --icon-contrast: #111827;
     --auto-icon-fill: #111827;
     --auto-icon-half: #fff;
@@ -109,7 +110,7 @@ body {
 /* ── Animated Background ──────────────────────────── */
 .bg-canvas {
     position: fixed;
-    inset: -env(safe-area-inset-top) -env(safe-area-inset-right) -env(safe-area-inset-bottom) -env(safe-area-inset-left);
+    inset: calc(-1 * env(safe-area-inset-top, 0px)) calc(-1 * env(safe-area-inset-right, 0px)) calc(-1 * env(safe-area-inset-bottom, 0px)) calc(-1 * env(safe-area-inset-left, 0px));
     z-index: 0;
     overflow: hidden;
     background: var(--page-background);
@@ -152,15 +153,45 @@ body {
     width: 600px; height: 600px;
     background: #13547a;
     top: 34%; right: -10%;
+    animation-name: float-mirrored;
     animation-duration: 20s;
     animation-delay: -6s;
 }
 
+/* Bottom glow, drifts sideways along the lower edge */
+.bg-orb:nth-child(3) {
+    width: 760px; height: 760px;
+    background: #2a0845;
+    bottom: -380px; left: 22%;
+    animation-name: float-bottom;
+    animation-duration: 30s;
+    animation-delay: -12s;
+}
+
+[data-theme="light"] .bg-orb { opacity: 0.55; }
+[data-theme="light"] .bg-orb:nth-child(1) { background: #c9b8f0; }
+[data-theme="light"] .bg-orb:nth-child(2) { background: #b8d8e8; }
+[data-theme="light"] .bg-orb:nth-child(3) { background: #d0c4f2; }
+
 @keyframes float {
     0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(60px, -40px) scale(1.05); }
-    50% { transform: translate(-30px, 60px) scale(0.95); }
-    75% { transform: translate(40px, 30px) scale(1.02); }
+    25% { transform: translate(14vw, -8vh) scale(1.08); }
+    50% { transform: translate(-6vw, 14vh) scale(0.92); }
+    75% { transform: translate(10vw, 8vh) scale(1.04); }
+}
+
+@keyframes float-bottom {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-16vw, -5vh) scale(1.06); }
+    50% { transform: translate(6vw, -10vh) scale(0.94); }
+    75% { transform: translate(16vw, -3vh) scale(1.03); }
+}
+
+@keyframes float-mirrored {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(-14vw, 8vh) scale(1.08); }
+    50% { transform: translate(6vw, -14vh) scale(0.92); }
+    75% { transform: translate(-10vw, -8vh) scale(1.04); }
 }
 
 /* Interactive layer added by fluid.js */
@@ -772,7 +803,7 @@ body {
     gap: 0.35rem;
     font-size: 0.75rem;
     color: var(--footer-text);
-    text-shadow: 0 1px 8px rgba(0,0,0,0.28);
+    text-shadow: var(--footer-shadow);
 }
 
 .footer a {
