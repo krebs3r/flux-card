@@ -2,10 +2,20 @@
 
 All notable changes to Flux Card are documented here.
 
-## Unreleased
+## v1.2.3
+
+### Added
+- The footer shows the current version, linked to this changelog.
+
+### Changed
+- Light mode on phones uses lighter, less blurred glass, so the background effect stays visible behind the cards.
+- On phones the first card starts below the language and theme buttons instead of underneath them, and the page padding respects the iPhone safe areas again.
+- Cards no longer react to hover (extra 1px ring and brighter border removed), since they are not clickable.
+- On touch devices the fluid effect is only slightly dimmed while the finger is on a card, since the cards fill almost the whole screen.
 
 ### Fixed
-- Safari on iOS 26 no longer shows black bars at the notch and behind the address bar. The fixed background layer is no longer hit-testable, so Safari tints the bars from the page background and content scrolls underneath them.
+- Safari on iOS 26 no longer shows black bars at the notch and behind the address bar. The animated background now keeps clear of the screen edges on iOS and fades into the page gradient, so Safari no longer fills the bars with a solid color and the page scrolls underneath them.
+- On first load the status bar on iOS shows a purple tone matching the page instead of black. Safari takes that color from the body's `background-color`, which is now a matching tone, while the page base color moved into the gradient layers.
 
 ## v1.2.2
 

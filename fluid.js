@@ -26,6 +26,7 @@
         splatForce: 3200,
         maxStep: 0.04,
         contentDye: 0.15,   // dye share while the pointer is over cards/buttons
+        touchContentDye: 0.7, // on phones the cards fill the screen, so a finger is almost always on one
     };
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -396,13 +397,15 @@
     }
 
     // ── Pointer input (window-level, canvas never blocks clicks) ──
-    const ptr = { x: 0.5, y: 0.5, px: 0.5, py: 0.5, moved: false, active: false, lastMove: -Infinity, overContent: false };
+    const ptr = { x: 0.5, y: 0.5, px: 0.5, py: 0.5, moved: false, active: false, lastMove: -Infinity, overContent: false, touch: false };
     const CONTENT_SELECTOR = '.glass-card, .top-controls';
 
+    // On iOS the layer is inset from the screen edges, so map pointers to its own rectangle
     function track(clientX, clientY, target) {
         ptr.overContent = !!(target && target.closest && target.closest(CONTENT_SELECTOR));
-        const x = clientX / window.innerWidth;
-        const y = 1 - clientY / window.innerHeight;
+        const r = bgCanvas.getBoundingClientRect();
+        const x = (clientX - r.left) / r.width;
+        const y = 1 - (clientY - r.top) / r.height;
         if (!ptr.active) { ptr.px = x; ptr.py = y; ptr.active = true; }
         ptr.x = x;
         ptr.y = y;
@@ -411,10 +414,13 @@
     }
 
     window.addEventListener('pointermove', e => {
-        if (e.pointerType !== 'touch') track(e.clientX, e.clientY, e.target);
+        if (e.pointerType === 'touch') return;
+        ptr.touch = false;
+        track(e.clientX, e.clientY, e.target);
     }, { passive: true });
     window.addEventListener('touchstart', e => {
         ptr.active = false;
+        ptr.touch = true;
         track(e.touches[0].clientX, e.touches[0].clientY, e.target);
     }, { passive: true });
     window.addEventListener('touchmove', e => {
@@ -484,8 +490,8 @@
 
     // ── Loop ─────────────────────────────────────────────
     const glow = { tx: 0, ty: 0, ax: 0, ay: 0, bx: 0, by: 0 };
-    glow.tx = glow.ax = glow.bx = window.innerWidth / 2;
-    glow.ty = glow.ay = glow.by = window.innerHeight * 0.4;
+    glow.tx = glow.ax = glow.bx = bgCanvas.clientWidth / 2;
+    glow.ty = glow.ay = glow.by = bgCanvas.clientHeight * 0.4;
 
     let last = performance.now();
     let hue = 0;
@@ -512,7 +518,8 @@
         last = now;
 
         // Fade (not cut) the effect when moving onto content, so card edges don't leave hard seams
-        dyeScale += ((ptr.overContent ? SIM.contentDye : 1) - dyeScale) * 0.15;
+        const contentDye = ptr.touch ? SIM.touchContentDye : SIM.contentDye;
+        dyeScale += ((ptr.overContent ? contentDye : 1) - dyeScale) * 0.15;
 
         if (mode === 'fluid' && fluid) {
             if (ptr.moved && ptr.active) {
@@ -536,13 +543,14 @@
             fluid.step(dt);
             fluid.render();
         } else if (mode === 'glow' && glowEl) {
+            const w = bgCanvas.clientWidth, h = bgCanvas.clientHeight;
             if (ptr.active) {
-                glow.tx = ptr.x * window.innerWidth;
-                glow.ty = (1 - ptr.y) * window.innerHeight;
+                glow.tx = ptr.x * w;
+                glow.ty = (1 - ptr.y) * h;
             } else if (OPTS.ambient && now - ptr.lastMove > 3000) {
                 const t = now / 1000;
-                glow.tx = window.innerWidth * (0.5 + 0.3 * Math.cos(t * 0.4));
-                glow.ty = window.innerHeight * (0.45 + 0.25 * Math.sin(t * 0.55));
+                glow.tx = w * (0.5 + 0.3 * Math.cos(t * 0.4));
+                glow.ty = h * (0.45 + 0.25 * Math.sin(t * 0.55));
             }
             glow.ax += (glow.tx - glow.ax) * 0.12;
             glow.ay += (glow.ty - glow.ay) * 0.12;

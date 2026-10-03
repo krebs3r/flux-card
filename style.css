@@ -29,10 +29,12 @@ html { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparen
         radial-gradient(circle at 100% 34%, rgba(0,212,170,0.34), transparent 34rem),
         linear-gradient(135deg, rgba(124,91,245,0.28), transparent 48%),
         linear-gradient(315deg, rgba(19,45,70,0.88), transparent 52%),
-        var(--bg);
+        /* Base drawn as an image layer, so background-color stays free for --edge */
+        linear-gradient(var(--bg), var(--bg));
 
     /* Dark (default) */
     --bg: #0e0e1a;
+    --edge: #4a3a94;    /* status bar fill, matches the top of the page gradient */
     --bg-gradient-1: #2a0845;
     --bg-gradient-2: #132d46;
     --bg-gradient-3: #0f2137;
@@ -61,6 +63,7 @@ html { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.15) transparen
 
 [data-theme="light"] {
     --bg: #e8eaf0;
+    --edge: #a396e8;
     --bg-gradient-1: #c9b8f0;
     --bg-gradient-2: #b8d8e8;
     --bg-gradient-3: #d0e0f0;
@@ -91,15 +94,20 @@ html {
     scroll-behavior: smooth;
     min-height: 100%;
     background: var(--page-background);
+    background-color: var(--edge);
     background-attachment: fixed;
     background-size: cover;
 }
 
+/* Safari 26 on iOS fills the status bar with body's background-color while the page
+   is at the very top. The gradient layers cover it everywhere else, so only the bar
+   (and overscroll) shows --edge. */
 body {
     font-family: var(--font);
     min-height: 100%;
     min-height: 100dvh;
     background: var(--page-background);
+    background-color: var(--edge);
     background-attachment: fixed;
     background-size: cover;
     color: var(--text);
@@ -110,15 +118,24 @@ body {
 /* ── Animated Background ──────────────────────────── */
 .bg-canvas {
     position: fixed;
-    inset: calc(-1 * env(safe-area-inset-top, 0px)) calc(-1 * env(safe-area-inset-right, 0px)) calc(-1 * env(safe-area-inset-bottom, 0px)) calc(-1 * env(safe-area-inset-left, 0px));
+    inset: 0;
     z-index: 0;
     overflow: hidden;
-    /* Safari 26 on iOS tints the status bar and toolbar from fixed elements it hits at the
-       viewport edges and paints them black for gradient backgrounds. Not being hit-testable
-       lets it fall back to the page itself, so the background shows under the bars. */
     pointer-events: none;
-    background: var(--page-background);
-    background-size: cover;
+    /* No background of its own: the page gradient on html/body shows through */
+}
+
+/* Safari 26 on iOS fills the status bar and toolbar with a solid color whenever a fixed
+   element touches the viewport edge, and never draws fixed content underneath them.
+   Keeping the layer clear of both edges lets the scrolling page show under the bars;
+   the mask fades the orbs into the page gradient instead of ending in a hard edge. */
+@supports (-webkit-touch-callout: none) {
+    .bg-canvas {
+        top: calc(env(safe-area-inset-top, 0px) + 6px);
+        bottom: 6px;
+        -webkit-mask-image: linear-gradient(to bottom, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+        mask-image: linear-gradient(to bottom, transparent, #000 48px, #000 calc(100% - 48px), transparent);
+    }
 }
 
 .bg-canvas::before {
@@ -209,9 +226,9 @@ body {
 }
 
 /* Interactive layer added by fluid.js */
-/* Pinned to the viewport itself: .bg-canvas currently has no size of its own */
+/* Absolute inside .bg-canvas: a second fixed layer would touch the edges again (see above) */
 .bg-fluid {
-    position: fixed;
+    position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
@@ -220,7 +237,7 @@ body {
 }
 
 .bg-glow {
-    position: fixed;
+    position: absolute;
     inset: 0;
     pointer-events: none;
     background:
@@ -340,11 +357,6 @@ body {
     background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
     opacity: 1;
     pointer-events: none;
-}
-
-.glass-card:hover {
-    border-color: var(--glass-highlight);
-    box-shadow: var(--shadow), 0 0 0 1px var(--glass-border);
 }
 
 /* ── Hero Section ─────────────────────────────────── */
@@ -825,6 +837,12 @@ body {
     text-decoration: none;
 }
 
+.footer .footer-version {
+    color: inherit;
+    opacity: 0.75;
+    font-variant-numeric: tabular-nums;
+}
+
 .footer-disclaimer a {
     color: inherit;
 }
@@ -845,9 +863,10 @@ body {
 
 /* ── Responsive ───────────────────────────────────── */
 @media (max-width: 600px) {
-    .app { padding: 1.5rem 0.75rem 2.5rem; }
+    /* Top: below the fixed controls (1.25rem offset + 48px buttons) plus a small gap */
+    .app { padding: calc(5rem + env(safe-area-inset-top)) 0.75rem calc(2.5rem + env(safe-area-inset-bottom)); }
     .top-controls { right: calc(2rem + env(safe-area-inset-right)); }
-    .hero { padding: 2rem 1.5rem; margin-top: 2rem; }
+    .hero { padding: 2rem 1.5rem; margin-top: 0; }
     .hero h1 { font-size: 1.7rem; }
     .sections { gap: 1rem; margin-top: 1.25rem; }
     .section { padding: 1.5rem; }
@@ -855,4 +874,11 @@ body {
     .form-row { grid-template-columns: 1fr; }
     .social-link span { display: none; }
     .footer { margin-top: 2rem; }
+
+    /* On phones the cards cover almost the whole screen: lighter glass keeps the background visible */
+    [data-theme="light"] {
+        --surface: rgba(255,255,255,0.28);
+        --glass: rgba(255,255,255,0.24);
+        --blur: 12px;
+    }
 }
