@@ -2,6 +2,12 @@
 
 All notable changes to Flux Card are documented here.
 
+## v1.2.5
+
+### Changed
+- Dark mode is the default, regardless of the system setting. Only an explicit click on the theme button is remembered; the previously auto-saved "auto" setting is discarded once.
+- The theme button cycles dark → light → auto and shows the current mode: a moon in dark mode, a sun in light mode.
+
 ## v1.2.4
 
 ### Fixed

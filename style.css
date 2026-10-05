@@ -340,8 +340,8 @@ body {
     transition: all var(--transition);
 }
 
-[data-theme-mode="dark"] .theme-toggle .icon-sun,
-[data-theme-mode="light"] .theme-toggle .icon-moon,
+[data-theme-mode="dark"] .theme-toggle .icon-moon,
+[data-theme-mode="light"] .theme-toggle .icon-sun,
 [data-theme-mode="auto"] .theme-toggle .icon-auto {
     opacity: 1;
     transform: rotate(0deg) scale(1);

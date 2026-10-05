@@ -3,7 +3,7 @@
 > A modular, single-page digital business card with glassmorphism design.
 > No server. No dependencies. Just edit one file and deploy.
 
-![Version](https://img.shields.io/badge/version-1.2.4-blueviolet)
+![Version](https://img.shields.io/badge/version-1.2.5-blueviolet)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
@@ -143,4 +143,4 @@ See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ---
 
-<p align="center">Made with focus · Flux Card v1.2.4</p>
+<p align="center">Made with focus · Flux Card v1.2.5</p>
