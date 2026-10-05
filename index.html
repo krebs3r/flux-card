@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" data-theme="dark">
+<html lang="de" data-theme="dark" data-theme-mode="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -87,7 +87,7 @@
     <script src="content.js"></script>
     <script>
         // Keep in sync with the README badge and CHANGELOG on every release
-        const VERSION = '1.2.4';
+        const VERSION = '1.2.5';
 
         // ── SVG Icon Map ─────────────────────────────────────
         const ICONS = {
@@ -121,9 +121,14 @@
 
         // ── Theme Toggle ─────────────────────────────────────
         const THEME_COLORS = { dark: '#0e0e1a', light: '#8f78e8' };
-        const THEME_MODES = ['auto', 'dark', 'light'];
+        const THEME_MODES = ['dark', 'light', 'auto'];
+        const THEME_STORAGE_KEY = 'flux-card-theme-choice';
         const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
-        let themeMode = localStorage.getItem('flux-card-theme-mode') || localStorage.getItem('flux-card-theme') || 'auto';
+        // Older versions stored 'auto' on every visit without a click, so those keys are dropped
+        localStorage.removeItem('flux-card-theme-mode');
+        localStorage.removeItem('flux-card-theme');
+        // Dark by default, regardless of the system setting; only an explicit click is remembered
+        let themeMode = localStorage.getItem(THEME_STORAGE_KEY) || 'dark';
 
         function setThemeColor(theme) {
             document.querySelector('meta[name="theme-color"]').setAttribute('content', THEME_COLORS[theme]);
@@ -134,15 +139,13 @@
         }
 
         function applyThemeMode(mode) {
-            if (!THEME_MODES.includes(mode)) mode = 'auto';
+            if (!THEME_MODES.includes(mode)) mode = 'dark';
             const html = document.documentElement;
             const theme = resolveTheme(mode);
             themeMode = mode;
             html.setAttribute('data-theme', theme);
             html.setAttribute('data-theme-mode', mode);
             setThemeColor(theme);
-            localStorage.setItem('flux-card-theme-mode', mode);
-            localStorage.removeItem('flux-card-theme');
 
             const labels = {
                 auto: `Theme automatisch (${theme})`,
@@ -155,6 +158,7 @@
         function toggleTheme() {
             const next = THEME_MODES[(THEME_MODES.indexOf(themeMode) + 1) % THEME_MODES.length];
             applyThemeMode(next);
+            localStorage.setItem(THEME_STORAGE_KEY, next);
         }
 
         (function initTheme() {
