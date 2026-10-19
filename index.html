@@ -87,7 +87,7 @@
     <script src="content.js"></script>
     <script>
         // Keep in sync with the README badge and CHANGELOG on every release
-        const VERSION = '1.2.5';
+        const VERSION = '1.3.0';
 
         // ── SVG Icon Map ─────────────────────────────────────
         const ICONS = {
@@ -245,7 +245,7 @@
                 `<span class="skill-tag">${s}</span>`
             ).join('');
 
-            const projectsHTML = c.projects.map(project => {
+            const renderProjectCard = project => {
                 const tags = project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('');
                 const liveLink = project.liveUrl
                     ? `<a href="${project.liveUrl}" target="_blank" rel="noopener" class="project-action">
@@ -273,7 +273,11 @@
                         ${liveLink}
                     </div>
                 </article>`;
-            }).join('');
+            };
+
+            // Projects without a public repository get their own section above the GitHub highlights
+            const showcaseHTML = (c.showcase || []).map(renderProjectCard).join('');
+            const projectsHTML = c.projects.map(renderProjectCard).join('');
 
             document.getElementById('app').innerHTML = `
                 <div class="hero glass-card">
@@ -291,6 +295,11 @@
                         <div class="section-title" data-i18n="section_focus"></div>
                         <div class="focus-list">${focusHTML}</div>
                     </div>
+
+                    ${showcaseHTML ? `<div class="section glass-card">
+                        <div class="section-title" data-i18n="section_showcase"></div>
+                        <div class="projects-grid">${showcaseHTML}</div>
+                    </div>` : ''}
 
                     <div class="section glass-card">
                         <div class="section-title" data-i18n="section_projects"></div>

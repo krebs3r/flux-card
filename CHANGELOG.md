@@ -2,6 +2,15 @@
 
 All notable changes to Flux Card are documented here.
 
+## v1.3.0
+
+### Added
+- A "Projects" section above the GitHub highlights for projects without a public repository, configured via the new `showcase` list in `content.js`. It only appears when the list has entries.
+- Krabbenkutter, a painted North Sea idle game, as the first project.
+
+### Changed
+- Computop Paygate Tester moved from the GitHub highlights to the new Projects section, since its repository is not public.
+
 ## v1.2.5
 
 ### Changed

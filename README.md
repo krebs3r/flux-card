@@ -3,7 +3,7 @@
 > A modular, single-page digital business card with glassmorphism design.
 > No server. No dependencies. Just edit one file and deploy.
 
-![Version](https://img.shields.io/badge/version-1.2.5-blueviolet)
+![Version](https://img.shields.io/badge/version-1.3.0-blueviolet)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
@@ -32,7 +32,7 @@ The interface follows a glassmorphism / acrylic design language with smooth anim
 - **Contact form** — mailto-based with math captcha and honeypot spam protection
 - **Social links** — GitHub, LinkedIn, E-Mail, and more (extensible via icon map)
 - **Focus areas** — highlight your key competencies with icons and descriptions
-- **Project highlights** — curated GitHub project cards with descriptions, tags, repo links, and live demos
+- **Project highlights** — curated GitHub project cards with descriptions, tags, repo links, and live demos, plus a separate section for projects without a public repository
 - **Skills grid** — tag-based display of your technologies and expertise
 - **Open Graph & Twitter Cards** — rich previews when shared on WhatsApp, Signal, LinkedIn, X, etc.
 
@@ -92,6 +92,7 @@ cd flux-card
 | `meta` | Page title, OG tags, repo URL |
 | `socialLinks` | Your social profiles (GitHub, LinkedIn, etc.) |
 | `skills` | Array of skill tags |
+| `showcase` | Projects without a public repository, shown in their own section above the GitHub highlights |
 | `projects` | Curated GitHub highlights with descriptions, tags, and links |
 | `focusAreas` | Key competencies with icons and i18n keys |
 | `background` | Interactive background: `effect` (`fluid` / `glow` / `orbs`), `intensity`, `fadeSeconds`, `ambient` |
@@ -143,4 +144,4 @@ See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ---
 
-<p align="center">Made with focus · Flux Card v1.2.5</p>
+<p align="center">Made with focus · Flux Card v1.3.0</p>
