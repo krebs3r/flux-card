@@ -77,6 +77,13 @@ const CONTENT = {
 
   "projects": [
     {
+      "name": "Paygate CLI",
+      "repo": "krebs3r/paygate-cli",
+      "url": "https://github.com/krebs3r/paygate-cli",
+      "i18nKey": "paygate_cli",
+      "tags": ["Payment", "Go", "CLI"]
+    },
+    {
       "name": "Flux ToDo",
       "repo": "krebs3r/flux-todo",
       "url": "https://github.com/krebs3r/flux-todo",
@@ -131,6 +138,7 @@ const CONTENT = {
       "section_projects": "GitHub Highlights",
       "project_krabbenkutter_desc": "Gemütliches Idle-Spiel an der Nordseeküste als gemaltes Wimmelbild: vom Wattkind zum Krabbenhafen, mit Gezeiten, Wetter, Seehunden und Hallig.",
       "project_computop_desc": "Clientseitiges Testtool für Computop Paygate HPP- und PaySSL-Integrationen mit Blowfish-Verschlüsselung, HMAC-SHA256 und Response-Decryptor.",
+      "project_paygate_cli_desc": "Terminal-App und CLI für die Nexi / Computop Paygate REST API v2: Zahlungen senden, Hosted Checkouts live verfolgen, Capture, Refund und Webhook-Tests.",
       "project_flux_todo_desc": "Local-first ToDo-PWA mit Offline-Support, IndexedDB, Task-Boards, Zeittracking, Pomodoro, Statistiken und responsivem Glass-UI.",
       "project_llm_cpu_desc": "Interaktiver Vergleich von 125+ AMD- und Intel-CPUs für PCIe-Lanes, Multi-GPU-Setups und lokale LLM-Workloads.",
       "project_netzbetreiber_desc": "Python-Tool, das dreistellige BecN-Präfixe systematisch ausliest und eine strukturierte Prefix-zu-Netzbetreiber-CSV erzeugt.",
@@ -167,6 +175,7 @@ const CONTENT = {
       "section_projects": "GitHub Highlights",
       "project_krabbenkutter_desc": "Cozy North Sea idle game painted as a living hidden-object scene: from a mudflat kid to a shrimp harbour, with tides, weather, seals, and the Hallig.",
       "project_computop_desc": "Client-side test tool for Computop Paygate HPP and PaySSL integrations with Blowfish encryption, HMAC-SHA256, and response decryption.",
+      "project_paygate_cli_desc": "Terminal app and CLI for the Nexi / Computop Paygate REST API v2: send payments, follow hosted checkouts live, capture, refund, and test webhooks.",
       "project_flux_todo_desc": "Local-first todo PWA with offline support, IndexedDB, task boards, time tracking, Pomodoro, statistics, and responsive glass UI.",
       "project_llm_cpu_desc": "Interactive comparison of 125+ AMD and Intel CPUs for PCIe lanes, multi-GPU setups, and local LLM workloads.",
       "project_netzbetreiber_desc": "Python tool that scans three-digit BecN prefixes and creates a structured prefix-to-network-operator CSV export.",

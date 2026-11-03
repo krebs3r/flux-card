@@ -2,6 +2,11 @@
 
 All notable changes to Flux Card are documented here.
 
+## v1.3.1
+
+### Added
+- Paygate CLI, a terminal app and command line tool for the Nexi / Computop Paygate REST API v2, as the first GitHub highlight.
+
 ## v1.3.0
 
 ### Added
